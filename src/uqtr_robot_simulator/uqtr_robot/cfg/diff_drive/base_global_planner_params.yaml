@@ -1,0 +1,7 @@
+base_global_planner: "waypoint_global_planner/WaypointGlobalPlanner"
+planner_frequency: 0.0
+planner_patience: 1.0
+
+lethal_cost: 253
+neutral_cost: 66 
+cost_factor: 0.55

@@ -1,0 +1,77 @@
+<launch>
+
+#### publish an example base_link -> laser transform ###########
+
+    
+
+  #### start the laser scan_matcher ##############################
+
+  <node pkg="laser_scan_matcher" type="laser_scan_matcher_node" 
+    name="laser_scan_matcher_node" output="screen">
+    <param name="use_imu" value="false"/>
+    <param name="fixed_frame" value = "odom"/>
+    <param name="max_iterations" value="10"/>
+    <param name="publish_pose_stamped" value="true"/>
+    <param name="use_odom" value="false"/>
+    <param name="outliers_maxPerc" value="1"/>
+    <param name="outliers_adaptive_order" value="1"/>
+    <param name="outliers_adaptive_mul" value="200"/>
+    <param name="publish_tf" value="true"/>
+    <remap from="scan" to="scan_multi"/>
+  </node>
+
+<node pkg="laser_scan_matcher" type="Conversion_PoseToOdom" 
+    name="Conversion_PoseToOdom" output="screen">
+
+  </node>
+
+<!--<node pkg="robot_localization" type="ekf_localization_node" name="ekf_se" clear_params="true">
+    <rosparam command="load" file="$(find robot_localization)/params/ekf_template_test_all.yaml"/>
+   </node>-->
+
+<node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="screen" >
+      <remap from="scan" to="scan_multi"/>
+      <!--remap from="odom" to="odometry/filtered"/-->
+    <param name="odom_frame" value="odom" />
+    <param name="resampleThreshold" value="0.5"/>
+    <param name="map_frame" value="map"/>
+    <param name="base_frame" value="base_link" />
+    <param name="map_update_interval" value="2.0"/>
+    <param name="linearUpdate" value="0.0"/>
+    <param name="angularUpdate" value="0.0"/>
+
+    <param name="maxUrange" value="50"/>
+    <!--param name="minimumScore" value="50"/-->
+    <!--param name="map_update_interval" value="2.0"/-->
+      <!--param name="maxUrange" value="16.0"/>
+      <param name="sigma" value="0.05"/>
+      <param name="kernelSize" value="1"/>
+      <param name="lstep" value="0.05"/>
+      <param name="astep" value="0.05"/>
+      <param name="iterations" value="5"/>
+      <param name="lsigma" value="0.075"/>
+      <param name="ogain" value="3.0"/>
+      <param name="lskip" value="0"/>
+      <param name="srr" value="0.1"/>
+      <param name="srt" value="0.2"/>
+      <param name="str" value="0.1"/>
+      <param name="stt" value="0.2"/>
+      <param name="linearUpdate" value="1.0"/>
+      <param name="angularUpdate" value="0.5"/>
+      <param name="temporalUpdate" value="3.0"/>
+      <param name="resampleThreshold" value="0.5"/>
+      <param name="particles" value="30"/>
+      <param name="xmin" value="-50.0"/>
+      <param name="ymin" value="-50.0"/>
+      <param name="xmax" value="50.0"/>
+      <param name="ymax" value="50.0"/>
+      <param name="delta" value="0.05"/>
+      <param name="llsamplerange" value="0.01"/>
+      <param name="llsamplestep" value="0.01"/>
+      <param name="lasamplerange" value="0.005"/>
+      <param name="lasamplestep" value="0.005"/-->
+  </node>
+
+<node name="rviz" pkg="rviz" type="rviz" args="-d $(find navgraph_solver)/cfg/navgraph.rviz"/>
+</launch>
+

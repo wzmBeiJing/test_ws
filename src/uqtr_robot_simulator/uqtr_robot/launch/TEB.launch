@@ -1,0 +1,37 @@
+
+<launch>
+
+<arg name="param_TEB" default="test3teb1.0"/>
+
+
+	<node pkg="move_base" type="move_base" respawn="true" name="move_base" output="screen">
+
+		<!--param name="base_global_planner" value="navgraph_solver/NavgraphGlobalPlanner"/-->
+		<param name="base_global_planner" value="global_planner/GlobalPlanner"/>
+		<param name="global_planner" value="global_planner/GlobalPlanner" />
+		<param name="points_file" value="$(find navgraph_solver)/navgraphs/points_rviz.csv"/>
+  		<param name="adjacency_file" value="$(find navgraph_solver)/navgraphs/adjacency_rviz.csv"/>
+		<rosparam file="$(find uqtr_robot)/cfg/diff_drive/global_costmap_params.yaml" command="load" />
+  	  	<rosparam file="$(find uqtr_robot)/cfg/diff_drive/costmap_common_params.yaml" command="load" ns="global_costmap" />
+  	 	<rosparam file="$(find uqtr_robot)/cfg/diff_drive/costmap_common_params.yaml" command="load" ns="local_costmap" />
+  		<rosparam file="$(find uqtr_robot)/cfg/diff_drive/local_costmap_params.yaml" command="load" />
+		<rosparam file="$(find uqtr_robot)/cfg/diff_drive/teb_local_planner_params.yaml" command="load" />
+		<rosparam file="$(find uqtr_robot)/cfg/diff_drive/costmap_converter_params.yaml" command="load" />
+		<param name="base_local_planner" value="teb_local_planner/TebLocalPlannerROS" />
+                <param name="controller_frequency" value="20.0" />
+				<remap from="cmd_vel" to="/iviz_android/cmd_vel"/>
+                <param name="clearing_rotation_allowed" value="false" />
+				<!--param name="transform_tolerance" value="0.6"/--> 
+  	</node>
+
+<!--node pkg="costmap_prohibition_layer" type="prohibited_zone" respawn="true" name="prohibited_zone_node" output="screen"/-->
+
+<node name="dynamic_reconfigure_load_TEB" pkg="dynamic_reconfigure" type="dynparam" args="load /move_base/TebLocalPlannerROS $(find uqtr_robot)/params/TEB/$(arg param_TEB).yaml" />
+
+
+</launch>
+
+
+  
+
+

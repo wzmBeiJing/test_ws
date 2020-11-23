@@ -1,0 +1,14 @@
+<launch>
+
+	<rosparam file="$(find navgraph_solver)/cfg/path_ws.yaml" />
+	
+
+
+    <!--  ************** Navigation ***************  -->
+	<node pkg="navgraph_solver" type="station_navigator" respawn="false" name="move_base_scam" output="screen"/>
+  	  
+
+	<!--  **************** Visualisation ****************  -->
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find navgraph_solver)/cfg/navgraph.rviz"/>
+ 
+ </launch>

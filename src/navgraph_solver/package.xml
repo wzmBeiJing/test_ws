@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>navgraph_solver</name>
+  <version>0.0.0</version>
+  <description>The navgraph_solver package</description>
+  <maintainer email="amanchandra333@gmail.com">amanchandra333</maintainer>
+  <license>TODO</license>
+  <author email="amanchandra333@gmail.com">Aman Chandra</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>roscpp</depend>
+  <depend>rospy</depend>
+  <depend>std_msgs</depend>
+  <depend>costmap_2d</depend>
+  <depend>geometry_msgs</depend>
+  <depend>actionlib_msgs</depend>
+  <depend>nav_core</depend>
+  <depend>nav_msgs</depend>
+  <depend>pluginlib</depend>
+  <depend>tf</depend>
+
+  <depend>global_planner</depend>
+  <depend>move_base</depend>
+
+  <build_depend>message_generation</build_depend>
+  <exec_depend>message_runtime</exec_depend>
+
+  <depend>rviz</depend>
+  <build_depend>qtbase5-dev</build_depend>
+  <exec_depend>libqt5-core</exec_depend>
+  <exec_depend>libqt5-gui</exec_depend>
+  <exec_depend>libqt5-widgets</exec_depend>
+
+  <export>
+    <nav_core plugin="${prefix}/bgp_plugin.xml" />
+    <rviz plugin="${prefix}/rviz_plugin.xml" />
+  </export>
+</package>

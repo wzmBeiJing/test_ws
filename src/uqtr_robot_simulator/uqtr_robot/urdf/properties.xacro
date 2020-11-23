@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<robot name="Uqtr_Robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- constants -->
+<xacro:property name="deg_to_rad" value="0.017453"/>
+<xacro:property name="PI" value="3.14"/>
+<xacro:property name="friction" value="0.0"/>
+<xacro:property name="damping" value="0.0"/>
+<xacro:property name="effort" value="100"/>
+<xacro:property name="velocity" value="100"/>
+
+
+<!-- proprietes des roues motrices-->
+<xacro:property name="rayon_roue" value="0.1016"/>
+<xacro:property name="largeur_roue" value="0.0512533"/>
+<xacro:property name="hauteur_roue" value="0.2032"/>
+<xacro:property name="masse_roue" value="1.3118"/>
+
+<!--Calcule d'inerti pour les roues motrices-->
+<xacro:macro name="cylinder_inertia" params ="m r h">
+    <inertial>
+   <mass value="${m}"/>
+   <inertia ixx="${m*(3*r*r+h*h)/12}"  ixy="0.0" ixz="0.0"
+            iyy="${m*(3*r*r+h*h)/12}"  iyz= "0.0"
+            izz="${m*r*r/2}"/>
+    </inertial>
+</xacro:macro>
+
+<!--Friction pour les roues motrices-->
+<xacro:macro name="Friction_roue_motrice" params= "wheel_name">
+   <gazebo reference ="${wheel_name}">
+     <mu1 value="449"/>    <!--449-->
+     <mu2 value="449"/>    <!--449-->
+     <kp  value="1000000.0" />   <!--10000000.0-->
+     <kd  value="1.0" />    <!--1.0-->
+   </gazebo>
+ </xacro:macro>
+ 
+ <!--Friction pour les roues casters-->
+ <xacro:macro name="Friction_roue_caster" params="caster_name">
+   <gazebo reference="${caster_name}">
+   <mu1>0.0</mu1>
+   <mu2>0.0</mu2>
+  </gazebo>
+ </xacro:macro>
+ 
+ <!--Gravite pour le chassis-->
+  <gazebo reference="chassis">
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+
+</robot>

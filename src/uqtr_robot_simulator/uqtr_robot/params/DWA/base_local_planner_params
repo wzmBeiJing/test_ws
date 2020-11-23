@@ -1,0 +1,13 @@
+#base_local_planner_params
+angular_sim_granularity: 0.025
+gdist_scale: 1.0
+pdist_scale: 1.0
+heading_scoring: 1.0
+heading_lookahead: True
+latch_xy_goal_tolerance: True
+meter_scoring: True
+penalize_negative_x: True
+vtheta_samples: 15
+
+
+

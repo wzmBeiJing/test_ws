@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<robot name="Uqtr_Robot">
+
+  <!--<gazebo reference ="chassis">
+     <material>Gazebo/Black</material>
+  </gazebo>-->
+
+<gazebo reference ="roue_motrice_droite">
+     <material>Gazebo/Black</material>
+  </gazebo> 
+  
+  <gazebo reference ="roue_motrice_gauche">
+     <material>Gazebo/Black</material>
+  </gazebo> 
+
+<gazebo reference ="capteur_laser_avant">
+     <material>Gazebo/Yellow</material>
+  </gazebo> 
+
+<gazebo reference ="capteur_laser_arriere">
+     <material>Gazebo/Yellow</material>
+  </gazebo> 
+
+
+</robot>

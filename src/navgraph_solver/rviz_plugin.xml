@@ -1,0 +1,9 @@
+<library path="lib/libnavgraph_rviz_panel">
+  <class name="navgraph_solver/WaypointPanel"
+         type="navgraph_rviz_panel::WaypointPanel"
+         base_class_type="rviz::Panel">
+    <description>
+      A panel widget allowing control using waypoints.
+    </description>
+  </class>
+</library>

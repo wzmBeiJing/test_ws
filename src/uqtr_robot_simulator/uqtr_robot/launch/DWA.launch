@@ -1,0 +1,32 @@
+<launch>
+	<node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+
+
+		<param name="base_global_planner" value="navgraph_solver/NavgraphGlobalPlanner"/>
+		<param name="global_planner" value="global_planner/GlobalPlanner" />
+		<param name="points_file" value="$(find navgraph_solver)/navgraphs/points_rviz.csv"/>
+  		<param name="adjacency_file" value="$(find navgraph_solver)/navgraphs/adjacency_rviz.csv"/>
+		<rosparam file="$(find divel_intern)/cfg/diff_drive/base_global_planner_params.yaml" command="load" />
+		<rosparam file="$(find divel_intern)/cfg/diff_drive/global_costmap_params.yaml" command="load" />
+  	  	<rosparam file="$(find divel_intern)/cfg/diff_drive/costmap_common_params.yaml" command="load" ns="global_costmap" />
+  	 	<rosparam file="$(find divel_intern)/cfg/diff_drive/costmap_common_params.yaml" command="load" ns="local_costmap" />
+  		<rosparam file="$(find divel_intern)/cfg/diff_drive/local_costmap_params.yaml" command="load" />
+                <rosparam file="$(find divel_intern)/cfg/diff_drive/dwa_params.yaml" command="load" />
+		<param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" />
+                <param name="controller_frequency" value="20.0" />
+                <param name="clearing_rotation_allowed" value="false" />
+
+        <!--param name="transform_tolerance" value="0.6"/--> 
+  	</node>
+
+<!--node name="dynamic_reconfigure_load_DWA" pkg="dynamic_reconfigure" type="dynparam" args="load /move_base/DWAPlannerROS /home/bot/params/DWA/test4dwa1.0.yaml" /-->
+
+
+<!--node name="dynamic_reconfigure_load_LCM" pkg="dynamic_reconfigure" type="dynparam" args="load /move_base/local_costmap/set_parameters /home/bot/params/DWA/LCM_DWA.yaml" /-->
+
+</launch>
+
+
+  
+
+
