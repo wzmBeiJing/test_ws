@@ -1,0 +1,15 @@
+<package>
+  <description brief="cob_component_test">
+
+     cob_component_test
+
+  </description>
+  <author>Florian Weisshardt</author>
+  <license>LGPL</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/cob_component_test</url>
+  <depend package="rospy"/>
+  
+</package>
+
+

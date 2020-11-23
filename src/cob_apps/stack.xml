@@ -1,0 +1,14 @@
+<stack>
+  <description brief="Care-O-bot stack with high level packages">
+
+     The cob_apps stack provides example applications, mainly for testing the Care-O-bot hardware drivers.
+
+  </description>
+  <author>Maintained by Florian Weisshardt</author>
+  <license>LGPL</license>  
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/cob_apps</url>
+  <depend stack="ros" />
+  <depend stack="ros_comm" /> <!-- rospy -->
+
+</stack>
